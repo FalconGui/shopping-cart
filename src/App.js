@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Cart from './components/Cart.jsx';
 
+import './components/Style.css';
+
 function App() {
   return (
     <>

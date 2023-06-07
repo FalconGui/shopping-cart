@@ -1,25 +1,35 @@
 import React from 'react';
-import { Container, Navbar, FormControl, Nav, Dropdown, Badge, Button } from 'react-bootstrap';
+import { Container, Navbar, FormControl, Nav, Dropdown, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { CartState } from '../context/Context';
 import { AiFillDelete } from 'react-icons/ai';
+import Logo from '../images/logo.svg';
 
 const Header = () => {
 
-  const {state: { cart }, dispatch} = CartState();
+  const {state: { cart }, dispatch, productDispatch} = CartState();
   
   return (
     <Navbar bg="dark" variant="dark" style={{ height: 80}}>
       <Container>
         <Navbar.Brand>
-          <Link to="/">Shopping Cart</Link>
+          <Link to="/" style={{fontSize: '30px'}}>
+            <img src={Logo} alt="Logo da Fenrir Store" style={{maxHeight: '3rem', filter: 'invert(100)', paddingRight: '10px'}}/>
+            Fenrir Store
+          </Link>
         </Navbar.Brand>
         <Navbar.Text className="search">
           <FormControl
             style={{ width: 500}}
             placeholder="Search a product"
             className="m-auto"
+            onChange={(e) => {
+              productDispatch({
+                type: 'SORT_BY_SEARCH',
+                payload: e.target.value
+              });
+            }}
           />
         </Navbar.Text>
         
@@ -27,7 +37,7 @@ const Header = () => {
           <Dropdown>
             <Dropdown.Toggle variant="success">
               <FaShoppingCart color="white" fontSize="25px" />
-              <Badge>{cart.length}</Badge>
+              <span style={{padding: '10px'}}>{cart.length}</span>
             </Dropdown.Toggle>
 
             <Dropdown.Menu style={{ minWidth: 370 }}>
