@@ -11,7 +11,9 @@ const Cart = () => {
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    setTotal(cart.reduce((acc,cur) => acc + Number(cur.price) * cur.qty, 0));
+    setTotal(
+      cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
+    );
   }, [cart]);
 
   return (
@@ -29,7 +31,7 @@ const Cart = () => {
                     <span>{prod.name}</span>
                   </Col>
                   <Col md={2}>
-                    {prod.price}
+                    $ {prod.price}
                   </Col>
                   <Col md={2}>
                     <Rating rating={prod.ratings}/>
@@ -72,9 +74,9 @@ const Cart = () => {
         </ListGroup>
       </div>
       <div className="filters summary">
-        <span className="title">Subtotal ({cart.lenght}) items</span>
+        <span className="title">Subtotal ({cart.length}) items</span>
         <span style={{fontWeight: 700, fontSize: 20}}>Total: $ {total}</span>
-        <Button type="button" disabled={cart.lenght === 0}>Proceed to Checkout</Button>
+        <Button type="button" disabled={cart.length === 0}>Proceed to Checkout</Button>
       </div>
     </div>
   );

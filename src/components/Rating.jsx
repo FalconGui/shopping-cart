@@ -22,6 +22,6 @@ export default Rating;
 
 Rating.propTypes = {
   rating: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  style: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  style: PropTypes.object,
 };
